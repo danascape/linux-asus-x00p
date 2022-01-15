@@ -28,10 +28,6 @@ _config="config-$_flavor.$arch"
 source="
 	$pkgname-$_commit.tar.gz::https://github.com/LineageOS/$_repository/archive/$_commit.tar.gz
 	$_config
-	gcc7-give-up-on-ilog2-const-optimizations.patch
-	gcc8-fix-put-user.patch
-	gcc10-extern_YYLOC_global_declaration.patch
-	kernel-use-the-gnu89-standard-explicitly.patch
 "
 builddir="$srcdir/$_repository-$_commit"
 _outdir="out"
