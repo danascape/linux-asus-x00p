@@ -28,6 +28,7 @@ _config="config-$_flavor.$arch"
 source="
 	$pkgname-$_commit.tar.gz::https://github.com/LineageOS/$_repository/archive/$_commit.tar.gz
 	$_config
+	always-boot-to-initramfs.patch
 "
 builddir="$srcdir/$_repository-$_commit"
 _outdir="out"
