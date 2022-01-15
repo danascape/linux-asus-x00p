@@ -22,8 +22,8 @@ makedepends="
 "
 
 # Source
-_repository="(CHANGEME!)"
-_commit="ffffffffffffffffffffffffffffffffffffffff"
+_repository="android_kernel_asus_msm8937"
+_commit="d6a60bdad63f7b50edcd93ebc7790c1dab7ce09f"
 _config="config-$_flavor.$arch"
 source="
 	$pkgname-$_commit.tar.gz::https://github.com/LineageOS/$_repository/archive/$_commit.tar.gz
