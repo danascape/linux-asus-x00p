@@ -2,7 +2,7 @@
 # Kernel config based on: arch/arm64/configs/(CHANGEME!)
 
 pkgname=linux-asus-x00p
-pkgver=3.x.x
+pkgver=3.18.140
 pkgrel=0
 pkgdesc="ASUS Asus Max M1 kernel fork"
 arch="aarch64"
