@@ -23,7 +23,7 @@ makedepends="
 
 # Source
 _repository="linux-asus-X00P-4.9"
-_commit="ce81e17bf2454c176998fea4c1e7a41fa07a4c3b"
+_commit="bf4d45fa42795e58f133113bdfb7de8c85656039"
 _config="config-$_flavor.$arch"
 source="
 	$pkgname-$_commit.tar.gz::https://github.com/danascape/$_repository/archive/$_commit.tar.gz
@@ -50,7 +50,7 @@ package() {
 }
 
 sha512sums="
-9d75c496ee023409ba7546c49f7ff8cf2c18ad96075cc1f52c3602a860ee66ae407ecdb8888d045c551fcd323ded65b6031c02fb9c2ec89b2a0147f0399a2162  linux-asus-x00p-ce81e17bf2454c176998fea4c1e7a41fa07a4c3b.tar.gz
-d40656a000fb84428dc583a799dfa00c44790ed1397836a3c29bd3b694735dbaf02f863af7ee64eb85bb7b58884cbc04d94d3f0ee305b4a3cfd796105eb4014d  config-asus-x00p.aarch64
+7133766494551d14585c0d87db95b3c78b9c74f6bd4d72d85d7cbffcd328b14fb5e01c4dbf234aea887ebc8bb23f84bba72f28b1d68b396bb38047feb42da7e7  linux-asus-x00p-bf4d45fa42795e58f133113bdfb7de8c85656039.tar.gz
+6f72f5e51e88ffef3b74d4898a19bae2233e4940cd163d8ae916b3f0ad45cf42897b55e6b9ff0b24412526ae5dda7f040508281df42da6d751a091de924d8ef6  config-asus-x00p.aarch64
 8c10d536075009ef3fc636db50c706820751eebf8c581c06e16f2e68776b73e7c2369fcfc0c7bbb7f4be462df39fd82234efaacd7654de96367aaf117a98fd5a  always-boot-to-initramfs.patch
 "
