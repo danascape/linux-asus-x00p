@@ -2,9 +2,9 @@
 # Kernel config based on: arch/arm64/configs/(CHANGEME!)
 
 pkgname=linux-asus-x00p
-pkgver=3.18.140
+pkgver=4.9.337
 pkgrel=0
-pkgdesc="ASUS Asus Max M1 kernel fork"
+pkgdesc="Asus Max M1 kernel fork"
 arch="aarch64"
 _carch="arm64"
 _flavor="asus-x00p"
@@ -22,11 +22,11 @@ makedepends="
 "
 
 # Source
-_repository="android_kernel_asus_msm8937"
-_commit="d6a60bdad63f7b50edcd93ebc7790c1dab7ce09f"
+_repository="linux-asus-X00P-4.9"
+_commit="ce81e17bf2454c176998fea4c1e7a41fa07a4c3b"
 _config="config-$_flavor.$arch"
 source="
-	$pkgname-$_commit.tar.gz::https://github.com/LineageOS/$_repository/archive/$_commit.tar.gz
+	$pkgname-$_commit.tar.gz::https://github.com/danascape/$_repository/archive/$_commit.tar.gz
 	$_config
 	always-boot-to-initramfs.patch
 "
@@ -50,7 +50,7 @@ package() {
 }
 
 sha512sums="
-09b02b3a2e4d99e717170ff4ef6d7fe2bf71bece23d2e5acccfb7a15a110f8c89f2b14ba6aab8f39482ab4e3e7929ef3c5a910107caa408d6ad3e8b7ca0196e7  linux-asus-x00p-d6a60bdad63f7b50edcd93ebc7790c1dab7ce09f.tar.gz
-5163960433de3064bcaa1651fa73fb10848a6f04fdb09bcd57185cc24ba1cb8eaea5c417de7f0739a4be8b82c9b8479b2af903865c6d1cb6b39a335200a2352d  config-asus-x00p.aarch64
+9d75c496ee023409ba7546c49f7ff8cf2c18ad96075cc1f52c3602a860ee66ae407ecdb8888d045c551fcd323ded65b6031c02fb9c2ec89b2a0147f0399a2162  linux-asus-x00p-ce81e17bf2454c176998fea4c1e7a41fa07a4c3b.tar.gz
+d40656a000fb84428dc583a799dfa00c44790ed1397836a3c29bd3b694735dbaf02f863af7ee64eb85bb7b58884cbc04d94d3f0ee305b4a3cfd796105eb4014d  config-asus-x00p.aarch64
 8c10d536075009ef3fc636db50c706820751eebf8c581c06e16f2e68776b73e7c2369fcfc0c7bbb7f4be462df39fd82234efaacd7654de96367aaf117a98fd5a  always-boot-to-initramfs.patch
 "
