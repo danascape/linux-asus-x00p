@@ -8,34 +8,38 @@ pkgdesc="Asus Max M1 kernel fork"
 arch="aarch64"
 _carch="arm64"
 _flavor="asus-x00p"
-url="https://kernel.org"
+url="https://github.com/MrArtemSid/linux-msm89x7"
 license="GPL-2.0-only"
-options="!strip !check !tracedeps pmb:cross-native"
+options="!strip !check !tracedeps
+	pmb:cross-native
+	pmb:kconfigcheck-community
+"
 makedepends="
 	bash
 	bc
 	bison
 	devicepkg-dev
+	findutils
 	flex
 	openssl-dev
 	perl
+	postmarketos-installkernel
 "
 
 # Source
-_repository="linux-asus-X00P-4.9"
-_commit="bf4d45fa42795e58f133113bdfb7de8c85656039"
+_repository="linux-msm89x7"
+_commit="2ad34a0d01f23c55930394522af696b1cf26dc14"
 _config="config-$_flavor.$arch"
 source="
-	$pkgname-$_commit.tar.gz::https://github.com/danascape/$_repository/archive/$_commit.tar.gz
+	$pkgname-$_commit.tar.gz::https://github.com/MrArtemSid/$_repository/archive/$_commit.tar.gz
 	$_config
-	always-boot-to-initramfs.patch
 "
 builddir="$srcdir/$_repository-$_commit"
 _outdir="out"
 
 prepare() {
 	default_prepare
-	. downstreamkernel_prepare
+	cp "$srcdir/config-$_flavor.$arch" .config
 }
 
 build() {
@@ -45,12 +49,22 @@ build() {
 }
 
 package() {
-	downstreamkernel_package "$builddir" "$pkgdir" "$_carch" \
-		"$_flavor" "$_outdir"
+	mkdir -p "$pkgdir"/boot
+
+	make zinstall modules_install dtbs_install \
+		ARCH="$_carch" \
+		INSTALL_PATH="$pkgdir"/boot \
+		INSTALL_MOD_PATH="$pkgdir" \
+		INSTALL_MOD_STRIP=1 \
+		INSTALL_DTBS_PATH="$pkgdir/boot/dtbs"
+	rm -f "$pkgdir"/lib/modules/*/build "$pkgdir"/lib/modules/*/source
+
+	install -Dm644 "$builddir/include/config/kernel.release" \
+		"$pkgdir/usr/share/kernel/$_flavor/kernel.release"
 }
 
+
 sha512sums="
-7133766494551d14585c0d87db95b3c78b9c74f6bd4d72d85d7cbffcd328b14fb5e01c4dbf234aea887ebc8bb23f84bba72f28b1d68b396bb38047feb42da7e7  linux-asus-x00p-bf4d45fa42795e58f133113bdfb7de8c85656039.tar.gz
-6f72f5e51e88ffef3b74d4898a19bae2233e4940cd163d8ae916b3f0ad45cf42897b55e6b9ff0b24412526ae5dda7f040508281df42da6d751a091de924d8ef6  config-asus-x00p.aarch64
-8c10d536075009ef3fc636db50c706820751eebf8c581c06e16f2e68776b73e7c2369fcfc0c7bbb7f4be462df39fd82234efaacd7654de96367aaf117a98fd5a  always-boot-to-initramfs.patch
+982c57911cb1eb9c8d3acd1270216f45c916e009284bc7da327e7f8e6495d8b2bacb18f14773289dc2eab11d6e0ab44d4917fa059651155a90afcb06de1c8993  linux-asus-x00p-2ad34a0d01f23c55930394522af696b1cf26dc14.tar.gz
+5f28c4866bf1c198e65a78b6aeea1fb9b5c2ec3f4af2e618a9df1e070c1fed034a5bf0fa3e8ffe3fe3ff086490cf407541863295f95476f99878d351ce8cf0f8  config-asus-x00p.aarch64
 "
